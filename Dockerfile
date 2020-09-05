@@ -10,5 +10,5 @@ RUN touch /root/tail.txt
 
 EXPOSE 2222
 VOLUME /root/Projects
-ENTRYPOINT ["/etc/init.d/ssh", "restart"]
+#ENTRYPOINT ["/etc/init.d/ssh", "restart"]
 CMD ["tail", "-f", "tail.txt"]
