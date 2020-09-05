@@ -6,9 +6,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
 	apt update && apt install -y vim openssh-server net-tools
 COPY ./sshd_config /etc/ssh/
-RUN touch /root/tail.txt
+COPY ./start.sh .
+RUN chmod u+x start.sh
 
 EXPOSE 2222
 VOLUME /root/Projects
-#ENTRYPOINT ["/etc/init.d/ssh", "restart"]
-CMD ["tail", "-f", "tail.txt"]
+ENTRYPOINT ["./start.sh"]
+CMD ["start"]
