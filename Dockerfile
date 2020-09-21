@@ -30,7 +30,7 @@ CMD ["start"]
 #ENV TZ=Asia/Shanghai
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-	apt update && apt install -y vim openssh-server net-tools git wget
+#	apt update && apt install -y vim openssh-server net-tools git wget
 ##ADD ./go1.15/go1.15.2.linux-amd64.tar.gz /usr/local/lib
 #ADD ./go1.12/go1.12.17.linux-amd64.tar.gz /usr/local/lib
 #ENV GOROOT=/usr/local/lib/go GOPATH=/root/Projects/go
