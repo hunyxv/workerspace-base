@@ -7,7 +7,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && 
 	apt update && apt install -y vim openssh-server net-tools git wget gcc libc6-dev
 
 RUN wget https://codeload.github.com/golang/go/tar.gz/go1.15.2 -O go1.15.2.linux-amd64.tar.gz && \
-	tar -zxf go1.15.2.linux-amd64.tar.gz && cd ./go/src && \
+	tar -zxf go1.15.2.linux-amd64.tar.gz && cd ./go-go1.15.2/go-go1.15.2/src && \
 	export GOROOT_BOOTSTRAP=/usr/local/lib/go && export CGO_ENABLE=0 && \ 
 	./all.bash
 	
