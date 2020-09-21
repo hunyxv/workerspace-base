@@ -7,8 +7,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && 
 	apt update && apt install -y vim openssh-server net-tools git wget gcc libc6-dev
 
 RUN wget https://studygolang.com/dl/golang/go1.15.2.src.tar.gz && apt install -y golang
-RUN tar -zxf go1.15.2.src.tar.gz && cd ./go/src && \ 
-	export GOROOT_BOOTSTRAP=/usr/local/lib/go && export CGO_ENABLE=0 && ./all.bash
+RUN tar -zxf go1.15.2.src.tar.gz -C /usr/local/lib && cd /usr/local/lib/go/src && ./all.bash
 RUN apt remove -y golang && apt autoremove -y && apt-get autoclean && rm -rf /var/lib/apt/lists/*
 	
 ENV GOROOT=/usr/local/lib/go GOPATH=/root/Projects/go
