@@ -4,11 +4,11 @@ WORKDIR /root
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-	apt update && apt install -y vim openssh-server net-tools git wget gcc libc6-dev
+	apt update && apt install -y vim openssh-server net-tools git wget gcc libc6-dev && \
+	apt-get autoclean && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://studygolang.com/dl/golang/go1.15.2.src.tar.gz && apt install -y golang
-RUN tar -zxf go1.15.2.src.tar.gz -C /usr/local/lib && cd /usr/local/lib/go/src && ./all.bash
-RUN apt remove -y golang && apt autoremove -y && apt-get autoclean && rm -rf /var/lib/apt/lists/*
+RUN wget https://studygolang.com/dl/golang/go1.15.2.src.tar.gz && apt install -y golang && \
+	tar -zxf go1.15.2.src.tar.gz -C /usr/local/lib && cd /usr/local/lib/go/src && ./all.bash && apt remove -y golang && apt autoremove -y
 	
 ENV GOROOT=/usr/local/lib/go GOPATH=/root/Projects/go
 ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH

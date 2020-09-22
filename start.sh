@@ -2,17 +2,24 @@
 
 if [ $1 = "start" ]
 then
+
+cat>>.bashrc<<EOF
+export GOROOT=/usr/local/lib/go
+export GOPATH=/root/Projects/go
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export GO111MODULE=on
+export GOPROXY=https://goproxy.io
+EOF
+	
+
 	echo "Setup ..."
 	/etc/init.d/ssh restart
-
-	ssh-keygen -t rsa  -f /root/.ssh/id_rsa -N `openssl rand -base64 8`
 
 	echo "Success"
 	echo ""
 	echo "-------------------------------------"
-	echo ""
 
-	tail -f /root/.ssh/id_rsa.pub
+	tail -f /dev/null
 
 elif [ $1 = "bash" ]
 then
@@ -20,3 +27,4 @@ then
 else
 	echo "not understand"
 fi
+
