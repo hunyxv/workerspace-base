@@ -10,7 +10,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && 
 RUN wget https://studygolang.com/dl/golang/go1.15.2.src.tar.gz && apt install -y golang && \
 	tar -zxf go1.15.2.src.tar.gz -C /usr/local/lib && cd /usr/local/lib/go/src && ./all.bash && apt remove -y golang && apt autoremove -y
 	
-ENV GOROOT=/usr/local/lib/go GOPATH=/root/Projects/go
+ENV GOROOT=/usr/local/lib/go GOPATH=/root/go
 ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 COPY ./sshd_config /etc/ssh/
 COPY ./start.sh .
