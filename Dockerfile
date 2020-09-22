@@ -5,12 +5,11 @@ ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
 	apt update && apt install -y vim openssh-server net-tools git wget && \
-	apt-get autoclean && rm -rf /var/lib/apt/lists/*
+	apt-get autoclean && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/archives/*
 
-# RUN wget https://studygolang.com/dl/golang/go1.15.2.src.tar.gz && tar -zxf go1.15.2.src.tar.gz -C /usr/local/lib && \
-# 	rm -rf go1.15.2.src.tar.gz && cd /usr/local/lib/go/src && ./all.bash && apt remove -y golang && apt autoremove -y
-ADD https://studygolang.com/dl/golang/go1.15.2.linux-amd64.tar.gz .
-RUN tar -zxf go1.15.2.linux-amd64.tar.gz -C /usr/local/lib
+RUN wget https://studygolang.com/dl/golang/go1.15.2.linux-amd64.tar.gz && \
+	tar -zxf go1.15.2.linux-amd64.tar.gz -C /usr/local/lib && \
+	rm -f go1.15.2.linux-amd64.tar.gz
 	
 ENV GOROOT=/usr/local/lib/go GOPATH=/root/go
 ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
